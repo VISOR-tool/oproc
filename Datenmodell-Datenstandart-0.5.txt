@@ -1,0 +1,209 @@
+
+VISOR Datenstandard OProc Version 0.4
+=====================================
+
+Hinweis: 
+- Kommentare sind durch keys mit Unterstrich realisiert. Diese können ignriert werden und sind im realen JSON nicht enthalten
+- leere Felder sollten leere Strings sein
+
+[Doc] Prozesse
+--------------
+{
+    "id": "https://prozesse.stadt.de/process/1",
+    "specification": "https://schema.oproc.org/1.0/process",
+    "parentProcess": "https://prozesse.stadt.de/process/0",
+    "childProcess":
+        [
+            "process": "https://prozesse.stadt.de/process/2",
+            "process": "https://prozesse.stadt.de/process/42",
+            "process": "https://prozesse.stadt.de/process/17"
+        ],
+    "connection": {
+        "from": [],
+        "to": []
+        },
+    "name": "Bau der Waldschlößchenbrücke",
+    "uniqueName": "AZ1337/42",                                        # Evtl. vorhanden. eindeutige Bezeichner wie Aktenzeichen
+    "description": "<long text>",
+    "start": "2011-11-11T11:11:00+01:00",
+    "end":   "2011-11-11T11:11:00+01:00",                             # optional
+    "creator": "https://prozesse.stadt.de/stakeholder/1234",          # wer hat es erstellt und abgespeichert
+    "created": "2011-11-11T11:11:00+01:00",                           # kann Speicherdatum oder Beschlußzeitpunkt oä. sein
+    "modified": "2012-11-11T11:11:00+01:00",
+    "initiator": "https://prozesse.stadt.de/stakeholder/0",           # wer hat es sich ausgedacht / initiiert
+    "responsibility" : "https://prozesse.stadt.de/stakeholder/0"      # Falls sich die verantwortliche Person Ändernt. Vorbelegt mit dem Initiator. 
+    "location":{
+        "contact": "https://prozesse.stadt.de/stakeholder/42",
+        "name": "Bibo im Kulturpalastes",
+        "auxiliary": "Zugang Wilsdruferstraße",
+        "adress": "Schloßstraße 2, 01067 Dresden",
+        "room": "Etage 4, Zimmer 432",
+        "phone": "0190 666666",
+        "telefax": "0190 777777",
+        "email": "foo@bar.de"
+        "website": "https://foo.bar.de",
+        "geojson": {},                                                # normales geojson
+        "access": "restricted",                                       # Zugangsbefugnis
+        "accessible": "yes"                                           # behindertengerechter Zugang
+    },
+    "participation": "open" || "partially opened" || "closed",          # Nur bestimmte typen zugelassen: offen, geschloßen
+    "transformation": "type": "=" || "<" || ">",                        # die Art der Transformation (merge, spread, pass)
+    "stakeholder": [                                                    # Profiteur des Prozeses oder weitere Personen mit Interesse
+        "https://prozesse.stadt.de/stakeholder/21",          
+        "https://prozesse.stadt.de/stakeholder/21",          
+        "https://prozesse.stadt.de/stakeholder/21",        
+        ],  
+    "result":
+        [{
+            "id": "https://prozesse.stadt.de/result/93",
+            "name": "Workshop 6 - Gruppe 1 - Plakat",
+            "description": "some pictures",                                   # Allgemeine Beschreibung des Ergebnisses (bidl, Vid, text, vertrag, protokoll, ..)
+            "file":[
+                {
+                    "id": "https://prozesse.stadt.de/file/9313",
+                    "filename": "workshop-bild-433.img",
+                    "mimeType": "image/jpeg",
+                    "size": "7549747",
+                    "creator": "https://prozesse.stadt.de/stakeholder/700",
+                    "created": "2011-11-11T11:11:00+01:00",
+                    "modified": "2012-11-11T11:11:00+01:00",
+                    }
+            ],
+            "storageLocation" : "<string>"                                     # Entwder der link zu einer bekannten Location oder irgend ein Text
+            "text" : "www.etherpad.net/p/workshop-6-Gruppe-1-Notizen",         # Freier Text oder internet link
+            "copyright":
+                {
+                "name": "LGPL2.1 - GNU Lesser General Public License version 2.1",
+                "link": "https://opensource.org/licenses/LGPL-2.1",
+                }
+        }]
+    "participant": [                                                   # Teilnehmende Akteure.
+        "stakeholder": "https://prozesse.stadt.de/stakeholder/0",       # zb. die Zivilgesellschaft
+        "stakeholder": "https://prozesse.stadt.de/stakeholder/2",       # zB. der Stadtrat
+        "stakeholder": "https://prozesse.stadt.de/stakeholder/42",      # zB. die teilnehmende Firma
+        ]                                                 
+    "reference" = "aktenzeichen xy" //eine Eindeutige Verbindungzu einem Formalen Prozess oder so
+    "oParlRelation":                                                 # Verbindung zu einem oParl-Objekt zb.
+    {
+      "link": "https://oparl.stadt.de/meeting/1234"                 # ein link zu
+    }
+}
+
+
+[Doc] Transformation
+--------------------
+{
+  "id": "https://prozesse.stadt.de/transformation/21",
+  "name": "Zukunfsstadt Workshop 6 - Bürgerbeteiligung",
+  "description": "<long text>",
+  "transaction": "merge",                                           # transformationstypen: Zusammenführen, Aufspreitzen und Weitergeben (merge, spread, pass)
+  "participation":
+  [
+    {
+      "target": "https://prozesse.stadt.de/stakeholder/0"           # Die möglichen Arten zu Partizipieren. Hier zb. alle, die gesamte Zivilbevölkerung.
+      "kind": "öffentliche Bekanntmachung",
+    },
+    {
+      "target": "Angemeldete Teilnehmer"
+      "kind": "Teilnahme an Workshop. Gruppeenbildung. Verpflegung vor Ort",
+    }
+  ],
+
+  "initiator": "https://prozesse.stadt.de/stakeholder/0",           # wer hat es sich ausgedacht / initiiert. Ist gleich zum initiator im Prozess
+  "result" :
+    [
+      "https://prozesse.stadt.de/result/21",
+      "https://prozesse.stadt.de/result/763"
+    ]
+  "created": "2011-11-11T11:11:00+01:00",
+  "modified": "2012-11-11T11:11:00+01:00"
+}
+
+
+[Location] Ein Ort
+------------------
+"location":[
+{
+    "id": "https://prozesse.stadt.de/location/1234",
+    "streetAdress": "Blumenstraße 4",
+    "zip": "01157",
+    "subLocality": "Alstadt",
+    "locality": "Dresden",
+    "name": "Bibo im Kulturpalastes",
+    "auxiliary"  : "Zugang Wilsdruferstraße",
+    "room": "Etage 4, Zimmer 432",
+    "geojson": {},                                                # normales geojson
+    "access": "restricted",                                       # Zugangsbefugnis
+    "accessible": true|false                                      # behindertengerechter Zugang
+
+},{}]
+
+
+[Doc] Stakeholder (Einzelpersonen oder Gruppen)
+-----------------------------------------------
+{
+  "id": "https://prozesse.stadt.de/stakeholder/1234",
+  "name": "Gruppe der geheimen Skeptiker",
+  "created": "2011-11-11T11:11:00+01:00",
+  "modified": "2012-11-11T11:11:00+01:00",
+  "group": true,
+  "partitipartion": true|false,                                     # Zugangsbeschränkt
+  "knownMembers" : [
+    { "id" : "stakeholder_id" ,
+      "start" : "2011-11-11T11:11:00+01:00",                        # Wie lange ist die "Person" Mitglied der Gruppe
+      "end" : "2013-11-11T11:11:00+01:00",                          # optional
+    },
+  ],
+  "phone": "0190 666666",
+  "telefax": "0190 777777",
+  "internet":
+    [                                                               # alle Felder ausser mail und web sind optional und frei erweiterbar
+      "email": "foo@bar.de",
+      "website": "https://foo.bar.de",
+      "jabber": "foobar@jabber.bar.de",
+      "facebook": "facebook.com/users/foobar",
+      "mastodon": "foobar@masto.bar.de",
+      "icq": "15877456"
+    ]
+}
+
+
+[Doc] Results
+-------------
+{
+  "id": "https://prozesse.stadt.de/result/93",
+  "name": "Workshop 6 - Gruppe 1 - Plakat",
+  "description": "some pictures",                                   # Allgemeine Beschreibung des Ergebnisses (bidl, Vid, text, vertrag, protokoll, ..)
+  "file":
+    [
+      {
+        "id": "https://prozesse.stadt.de/file/9313",
+        "filename": "workshop-bild-433.img",
+        "mimeType": "image/jpeg",
+        "size": "7549747",
+        "creator": "https://prozesse.stadt.de/stakeholder/700",
+        "created": "2011-11-11T11:11:00+01:00",
+        "modified": "2012-11-11T11:11:00+01:00",
+        }
+    ],
+  "storageLocation" : "<string>"                                     # Entwder der link zu einer bekannten Location oder irgend ein Text
+  "text" : "www.etherpad.net/p/workshop-6-Gruppe-1-Notizen",         # Freier Text oder internet link
+  "copyright":
+    {
+      "name": "LGPL2.1 - GNU Lesser General Public License version 2.1",
+      "link": "https://opensource.org/licenses/LGPL-2.1",
+    }
+}
+
+
+[Doc] File
+----------
+{
+  "id": "https://prozesse.stadt.de/file/9313",
+  "filename": "workshop-bild-433.img",
+  "mimeType": "image/jpeg",
+  "size": "7549747",
+  "creator": "https://prozesse.stadt.de/stakeholder/700",
+  "created": "2011-11-11T11:11:00+01:00",
+  "modified": "2012-11-11T11:11:00+01:00",
+}
