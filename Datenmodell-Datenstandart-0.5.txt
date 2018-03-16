@@ -1,5 +1,5 @@
 
-VISOR Datenstandard OProc Version 0.4
+VISOR Datenstandard OProc Version 0.5
 =====================================
 
 Hinweis: 
