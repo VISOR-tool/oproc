@@ -13,4 +13,4 @@ OProc ist die Gruppierung, die Initiator und Herausgeber der vorliegenden Spezif
 
 Die vorliegende Spezifikation beschreibt den oProc-Standard. Dieser definiert eine Webserviceschnittstelle, die den anonymen, lesenden Zugriff auf öffentliche Inhalte ermöglicht. Wie der Name "Webservice" ausdrückt, setzt diese Schnittstelle auf dem World Wide Web auf. Sie ermöglicht, dass Prozess-Informationen maschinenlesbar als offene Daten (Open Data) veröffentlicht werden. Der Text und gewisse strukturelle Teile von oProc sind vom OParl Standard inspiriert, übernommen oder komplett kopiert.
 
-Die vorliegende Version ist die erste verabschiedete Version der Spezifikation des oProc-Standards.
+.. work in progress ..
